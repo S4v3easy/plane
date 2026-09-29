@@ -95,7 +95,14 @@ export function InstanceAIForm(props: IInstanceAIForm) {
           message: "AI Settings updated successfully",
         })
       )
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Failed to update AI configuration:", err);
+        setToast({
+          type: "error",
+          title: "Error",
+          message: "Failed to update AI settings",
+        });
+      });
   };
 
   return (

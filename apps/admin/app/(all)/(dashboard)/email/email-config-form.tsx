@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2023-present Plane Software, Inc. and contributors
  * SPDX-License-Identifier: AGPL-3.0-only
- * See the LICENSE file for details.
+ * See the LICENSE file for the details.
  */
 
 import { useMemo, useState } from "react";
@@ -117,7 +117,14 @@ export function InstanceEmailForm(props: IInstanceEmailForm) {
           message: "Email Settings updated successfully",
         })
       )
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Failed to update email configuration:", err);
+        setToast({
+          type: "error",
+          title: "Error",
+          message: "Failed to update email settings. Please try again.",
+        });
+      });
   };
 
   const useTLSValue = watch("EMAIL_USE_TLS");

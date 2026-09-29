@@ -51,7 +51,14 @@ export const GeneralConfigurationForm = observer(function GeneralConfigurationFo
           message: "Settings updated successfully",
         })
       )
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Failed to update instance settings:", err);
+        setToast({
+          type: "error",
+          title: "Error",
+          message: "Failed to update settings. Please try again.",
+        });
+      });
   };
 
   return (
